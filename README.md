@@ -5,4 +5,4 @@ In this repo you can find implementations in ABAP OO for the examples on https:/
 
 List of design patterns:
 
-- Factory method
+- [Factory method](https://github.com/MaddinJay/Refactoring-Guru/tree/main/Factory_Method)
