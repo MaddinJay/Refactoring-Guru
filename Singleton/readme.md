@@ -2,7 +2,7 @@
 
 Example illustrated in https://refactoring.guru/design-patterns/singleton.
 
-[Singleton](https://github.com/MaddinJay/Refactoring-Guru/blob/main/Singleton/Design%20Pattern%20Singleton.PNG)
+![Singleton](https://github.com/MaddinJay/Refactoring-Guru/blob/main/Singleton/Design%20Pattern%20Singleton.PNG)
 
 ## Class ycl_singleton
 
