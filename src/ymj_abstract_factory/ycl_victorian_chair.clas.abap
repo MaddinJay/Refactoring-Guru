@@ -1,0 +1,22 @@
+CLASS ycl_victorian_chair DEFINITION
+  PUBLIC
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+    INTERFACES yif_chair.
+
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+CLASS ycl_victorian_chair IMPLEMENTATION.
+
+  METHOD yif_chair~has_legs.
+
+  ENDMETHOD.
+
+  METHOD yif_chair~sit_on.
+
+  ENDMETHOD.
+
+ENDCLASS.
