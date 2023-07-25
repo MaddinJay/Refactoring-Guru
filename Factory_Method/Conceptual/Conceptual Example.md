@@ -2,7 +2,7 @@
 
 Example illustrated in https://refactoring.guru/design-patterns/factory-method
 
-![Factory Method - Product Creator](https://github.com/MaddinJay/Refactoring-Guru/blob/main/Factory_Method/Factory%20Method%20-%20Product%20Creator.png)
+![Factory Method - Product Creator](https://github.com/MaddinJay/Refactoring-Guru/blob/main/Factory_Method/Conceptual/Factory%20Method%20-%20Product%20Creator.png)
 
 ## Class ycl_creator
 
