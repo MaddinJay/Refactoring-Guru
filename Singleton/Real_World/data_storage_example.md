@@ -46,6 +46,8 @@ ENDCLASS.
 
 ### Test class Data Storage
 
+The caller, here the testclass, creates an instance of the data storage class. We pass some value. The further workflow creates "another" instance and reads the value. By proving the passed value is the same then the rejected one we proof that we only have created one instance of data storage class.
+
 ```
 CLASS ltcl_data_storage DEFINITION FINAL FOR TESTING
   DURATION SHORT
