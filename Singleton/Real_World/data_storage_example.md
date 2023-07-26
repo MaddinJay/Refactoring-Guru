@@ -1,3 +1,6 @@
+This example is inspired by the blog article https://blogs.sap.com/2019/08/08/singleton-design-pattern-a-simple-yet-useful-example/ by Jan Braendgaard Petersen.
+Feel free to implement the full example your own.
+
 Imagine we want to create some data and store it e.g. in the data base. During the workflow we do not want to create several instances of the domain class "Data Storage", nor we want to pass the instance of the class through all the mainflow.
 To avoid the creation of several instances we use the singleton pattern.
 
