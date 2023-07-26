@@ -1,6 +1,8 @@
 Imagine we want to create some data and store it e.g. in the data base. During the workflow we do not want to create several instances of the domain class "Data Storage", nor we want to pass the instance of the class through all the mainflow.
 To avoid the creation of several instances we use the singleton pattern.
 
+![Data Storage](https://github.com/MaddinJay/Refactoring-Guru/blob/main/Singleton/Real_World/Singleton%20-%20Data%20Storage.PNG)
+
 ## Class Data Storage
 
 ```
