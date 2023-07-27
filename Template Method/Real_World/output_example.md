@@ -5,7 +5,7 @@ Imagine following situation.
 The standard main flow generates an output and print it in a special form. Now we have two new requirements: convert the output in a PDF format OR safe the output in the spool. For this we do not want to duplicate the whole main flow logic, that remains untouched. 
 We "just" want to change the behaviour how the output is generated in the very end of the main flow (method generating_output).
 
-We use inheritation and the template method pattern to reach our goal.
+We use the Template Method Pattern to reach our goal.
 
 ## Class Standard Output 
 
