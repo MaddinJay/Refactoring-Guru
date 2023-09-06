@@ -10,7 +10,7 @@ ENDCLASS.
 CLASS ycl_concrete_creator_a IMPLEMENTATION.
 
   METHOD create_product.
-    ro_product = NEW ycl_product_a( ).
+    result ?= NEW ycl_product_a( ).
   ENDMETHOD.
 
 ENDCLASS.

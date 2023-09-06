@@ -10,7 +10,7 @@ ENDCLASS.
 CLASS ycl_product_b IMPLEMENTATION.
 
   METHOD yif_product~do_stuff.
-    " Product is doing some stuff
+    " Product B is doing some stuff
   ENDMETHOD.
 
 ENDCLASS.

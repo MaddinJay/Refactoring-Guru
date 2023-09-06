@@ -12,9 +12,9 @@ CLASS ycl_creator DEFINITION
 
     "! <p class="shorttext synchronized" lang="en"></p>
     "! Factory method which is implemented in each sub-product-class (here A and B)
-    "! @parameter ro_product | Instance of the product <p class="shorttext synchronized" lang="en"></p>
+    "! @parameter result | Instance of the product <p class="shorttext synchronized" lang="en"></p>
     METHODS create_product ABSTRACT
-      RETURNING VALUE(ro_product) TYPE REF TO yif_product.
+      RETURNING VALUE(result) TYPE REF TO yif_product.
 
   PROTECTED SECTION.
     DATA mo_product TYPE REF TO yif_product.
