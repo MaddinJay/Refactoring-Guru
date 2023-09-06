@@ -13,9 +13,9 @@ CLASS ycl_consumer_service_adapter DEFINITION
     "! <p class="shorttext synchronized" lang="en"></p>
     "! Converting data to service XML format
     "! @parameter documents | <p class="shorttext synchronized" lang="en">Documents in client format</p>
-    "! @parameter documents_xml | <p class="shorttext synchronized" lang="en">Documents in XML format</p>
-    METHODS convert_to_xml IMPORTING documents            TYPE yif_service_adapter=>tt_documents
-                           RETURNING VALUE(documents_xml) TYPE ycl_consumer_service=>tt_documents_xml.
+    "! @parameter result | <p class="shorttext synchronized" lang="en">Documents in XML format</p>
+    METHODS convert_to_xml IMPORTING documents     TYPE yif_service_adapter=>documents_list
+                           RETURNING VALUE(result) TYPE ycl_consumer_service=>tt_documents_xml.
 
 ENDCLASS.
 
