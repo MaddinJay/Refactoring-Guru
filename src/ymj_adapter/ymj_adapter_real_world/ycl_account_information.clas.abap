@@ -14,7 +14,8 @@ ENDCLASS.
 CLASS ycl_account_information IMPLEMENTATION.
 
   METHOD process.
-    DATA documents TYPE yif_service_adapter=>tt_documents.
+
+    DATA documents TYPE yif_service_adapter=>documents_list.
     " Create document informations in client format
 
     " Call serive via adapter to convert documents from client format to XML format

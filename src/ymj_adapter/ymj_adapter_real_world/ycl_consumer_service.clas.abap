@@ -3,12 +3,12 @@ CLASS ycl_consumer_service DEFINITION
   CREATE PUBLIC .
 
   PUBLIC SECTION.
-    TYPES tt_documents_xml TYPE STANDARD TABLE OF string WITH DEFAULT KEY.
+    TYPES xml_documents_list TYPE STANDARD TABLE OF string WITH EMPTY KEY.
 
     "! <p class="shorttext synchronized" lang="en"></p>
     "! Calls the webservice to transfer data in XML format to receiver system
     "! @parameter documents | <p class="shorttext synchronized" lang="en"></p>
-    METHODS send_data IMPORTING documents TYPE tt_documents_xml.
+    METHODS send_data IMPORTING documents TYPE xml_documents_list.
 
 ENDCLASS.
 
