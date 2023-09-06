@@ -4,7 +4,7 @@ CLASS ycl_round_hole DEFINITION
 
   PUBLIC SECTION.
     METHODS constructor IMPORTING radius TYPE int1.
-    METHODS get_radius RETURNING VALUE(radius) TYPE int1.
+    METHODS get_radius RETURNING VALUE(result) TYPE int1.
     METHODS fits IMPORTING peg           TYPE REF TO ycl_round_peg
                  RETURNING VALUE(result) TYPE abap_boolean.
 
@@ -20,7 +20,7 @@ CLASS ycl_round_hole IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD get_radius.
-    radius = me->radius.
+    result = me->radius.
   ENDMETHOD.
 
   METHOD fits.
