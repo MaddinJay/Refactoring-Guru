@@ -4,7 +4,7 @@ CLASS ycl_round_peg DEFINITION
 
   PUBLIC SECTION.
     METHODS constructor IMPORTING radius TYPE int1.
-    METHODS get_radius  RETURNING VALUE(radius) TYPE int1.
+    METHODS get_radius  RETURNING VALUE(result) TYPE int1.
 
   PRIVATE SECTION.
     DATA radius TYPE int1.
@@ -18,7 +18,7 @@ CLASS ycl_round_peg IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD get_radius.
-    radius = me->radius.
+    result = me->radius.
   ENDMETHOD.
 
 ENDCLASS.

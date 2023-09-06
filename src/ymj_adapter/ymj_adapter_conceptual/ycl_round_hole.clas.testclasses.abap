@@ -3,9 +3,8 @@ CLASS ltcl_round_hole DEFINITION FINAL FOR TESTING
   RISK LEVEL HARMLESS.
 
   PRIVATE SECTION.
-    METHODS:
-      peg_fits_round_hole FOR TESTING,
-      test_hole_peg_comparisson FOR TESTING.
+    METHODS peg_fits_round_hole FOR TESTING.
+    METHODS test_hole_peg_comparisson FOR TESTING.
 
 ENDCLASS.
 

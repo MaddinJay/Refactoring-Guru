@@ -4,8 +4,7 @@ CLASS ycl_square_peg DEFINITION
 
   PUBLIC SECTION.
     METHODS constructor IMPORTING width TYPE int1.
-
-    METHODS get_width   RETURNING VALUE(width) TYPE int1.
+    METHODS get_width   RETURNING VALUE(result) TYPE int1.
 
   PRIVATE SECTION.
     DATA width TYPE int1.
@@ -19,7 +18,7 @@ CLASS ycl_square_peg IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD get_width.
-    width = me->width.
+    result = me->width.
   ENDMETHOD.
 
 ENDCLASS.

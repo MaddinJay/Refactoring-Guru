@@ -26,8 +26,11 @@ CLASS ycl_square_peg_adapter IMPLEMENTATION.
     " The adapter pretends that it's a round peg with a
     " radius that could fit the square peg that the adapter
     " actually wraps.
-    CHECK peg IS BOUND.
-    radius = sqrt( 2 ) * peg->get_width( ) / 2.
+    IF peg IS NOT BOUND.
+      RETURN.
+    ENDIF.
+
+    result = sqrt( 2 ) * peg->get_width( ) / 2.
   ENDMETHOD.
 
 ENDCLASS.
