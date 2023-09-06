@@ -4,8 +4,10 @@ CLASS ycl_personal_account DEFINITION
 
   PUBLIC SECTION.
     INTERFACES yif_bank_account.
+
   PRIVATE SECTION.
-    DATA mv_text TYPE string.
+    DATA text TYPE string.
+
 ENDCLASS.
 
 CLASS ycl_personal_account IMPLEMENTATION.
@@ -15,7 +17,7 @@ CLASS ycl_personal_account IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD yif_bank_account~register_account.
-    mv_text = 'Personal Account registered'.
+    text = 'Personal Account registered'.
   ENDMETHOD.
 
   METHOD yif_bank_account~validate_user_identiy.

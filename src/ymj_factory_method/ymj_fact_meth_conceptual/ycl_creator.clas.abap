@@ -17,15 +17,15 @@ CLASS ycl_creator DEFINITION
       RETURNING VALUE(result) TYPE REF TO yif_product.
 
   PROTECTED SECTION.
-    DATA mo_product TYPE REF TO yif_product.
+    DATA product TYPE REF TO yif_product.
 
 ENDCLASS.
 
 CLASS ycl_creator IMPLEMENTATION.
 
   METHOD some_operation.
-    mo_product = me->create_product( ).
-    mo_product->do_stuff( ).
+    product = me->create_product( ).
+    product->do_stuff( ).
   ENDMETHOD.
 
 ENDCLASS.

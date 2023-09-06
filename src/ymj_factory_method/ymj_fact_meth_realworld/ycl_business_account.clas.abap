@@ -4,9 +4,9 @@ CLASS ycl_business_account DEFINITION
 
   PUBLIC SECTION.
     INTERFACES yif_bank_account.
-  PROTECTED SECTION.
+
   PRIVATE SECTION.
-    DATA mv_text TYPE string.
+    DATA text TYPE string.
 
 ENDCLASS.
 
@@ -16,7 +16,7 @@ CLASS ycl_business_account IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD yif_bank_account~register_account.
-    mv_text = 'Business Account registered'.
+    text = 'Business Account registered'.
   ENDMETHOD.
 
   METHOD yif_bank_account~validate_user_identiy.

@@ -10,7 +10,7 @@ ENDCLASS.
 CLASS ycl_business_account_factory IMPLEMENTATION.
 
   METHOD create_account.
-    ro_bank_account = NEW ycl_business_account( ).
+    result ?= NEW ycl_business_account( ).
   ENDMETHOD.
 
 ENDCLASS.
