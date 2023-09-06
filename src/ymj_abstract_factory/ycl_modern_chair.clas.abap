@@ -5,18 +5,16 @@ CLASS ycl_modern_chair DEFINITION
   PUBLIC SECTION.
     INTERFACES yif_chair.
 
-  PROTECTED SECTION.
-  PRIVATE SECTION.
 ENDCLASS.
 
 CLASS ycl_modern_chair IMPLEMENTATION.
 
   METHOD yif_chair~has_legs.
-
+    "Some logic
   ENDMETHOD.
 
   METHOD yif_chair~sit_on.
-
+    "Some logic
   ENDMETHOD.
 
 ENDCLASS.
