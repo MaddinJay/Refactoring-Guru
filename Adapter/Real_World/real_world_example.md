@@ -1,6 +1,6 @@
 Assuming that we have following situtation:
 
-![Accounting - Example](https://github.com/MaddinJay/Refactoring-Guru/blob/main/Adapter/Real_World/Consumer_Service_Adapter.PNG)
+![Accounting - Example](Consumer_Service_Adapter.PNG)
 
 The client "account information" has to send information about document positions to a external system. The client itself creates the 
 documents with a specific structure. This structure does not match with that own the external system expects (XML format).
@@ -10,7 +10,7 @@ adapter class "consumer service adapter" to take care of the data conversion and
 
 ## Class Account Information (our client class)
 
-```
+```ABAP
 CLASS ycl_account_information DEFINITION
   PUBLIC
   CREATE PUBLIC .
@@ -27,7 +27,8 @@ ENDCLASS.
 CLASS ycl_account_information IMPLEMENTATION.
 
   METHOD process.
-    DATA documents TYPE yif_service_adapter=>tt_documents.
+
+    DATA documents TYPE yif_service_adapter=>documents_list.
     " Create document informations in client format
 
     " Call serive via adapter to convert documents from client format to XML format
@@ -39,18 +40,20 @@ ENDCLASS.
 
 ## Interface Service Adapter
 
-```
+```ABAP
 INTERFACE yif_service_adapter
   PUBLIC .
-  TYPES: tt_documents TYPE STANDARD TABLE OF string WITH DEFAULT KEY.
 
-  METHODS call_service IMPORTING documents TYPE tt_documents.
+  TYPES documents_list TYPE STANDARD TABLE OF string WITH EMPTY KEY.
+
+  METHODS call_service IMPORTING documents TYPE documents_list.
+
 ENDINTERFACE.
 ```
 
 ### Class Consumer Service Adapter
 
-```
+```ABAP
 CLASS ycl_consumer_service_adapter DEFINITION
   PUBLIC
   CREATE PUBLIC .
@@ -66,9 +69,9 @@ CLASS ycl_consumer_service_adapter DEFINITION
     "! <p class="shorttext synchronized" lang="en"></p>
     "! Converting data to service XML format
     "! @parameter documents | <p class="shorttext synchronized" lang="en">Documents in client format</p>
-    "! @parameter documents_xml | <p class="shorttext synchronized" lang="en">Documents in XML format</p>
-    METHODS convert_to_xml IMPORTING documents            TYPE yif_service_adapter=>tt_documents
-                           RETURNING VALUE(documents_xml) TYPE ycl_consumer_service=>tt_documents_xml.
+    "! @parameter result | <p class="shorttext synchronized" lang="en">Documents in XML format</p>
+    METHODS convert_to_xml IMPORTING documents     TYPE yif_service_adapter=>documents_list
+                           RETURNING VALUE(result) TYPE ycl_consumer_service=>xml_documents_list.
 
 ENDCLASS.
 
@@ -93,18 +96,18 @@ ENDCLASS.
 
 ## Class Consumer Service
 
-```
+```ABAP
 CLASS ycl_consumer_service DEFINITION
   PUBLIC
   CREATE PUBLIC .
 
   PUBLIC SECTION.
-    TYPES tt_documents_xml TYPE STANDARD TABLE OF string WITH DEFAULT KEY.
+    TYPES xml_documents_list TYPE STANDARD TABLE OF string WITH EMPTY KEY.
 
     "! <p class="shorttext synchronized" lang="en"></p>
     "! Calls the webservice to transfer data in XML format to receiver system
     "! @parameter documents | <p class="shorttext synchronized" lang="en"></p>
-    METHODS send_data IMPORTING documents TYPE tt_documents_xml.
+    METHODS send_data IMPORTING documents TYPE xml_documents_list.
 
 ENDCLASS.
 
