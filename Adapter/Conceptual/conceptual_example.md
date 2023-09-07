@@ -4,17 +4,16 @@ Example illustrated in [https://refactoring.guru/design-patterns/factory-method]
 
 ## Class ycl_round_hole
 
-```
+```ABAP
 CLASS ycl_round_hole DEFINITION
   PUBLIC
   CREATE PUBLIC .
 
   PUBLIC SECTION.
     METHODS constructor IMPORTING radius TYPE int1.
-
-    METHODS get_radius RETURNING VALUE(radius) TYPE int1.
-    METHODS fits IMPORTING peg               TYPE REF TO ycl_round_peg
-                 RETURNING VALUE(is_fitting) TYPE abap_boolean.
+    METHODS get_radius RETURNING VALUE(result) TYPE int1.
+    METHODS fits IMPORTING peg           TYPE REF TO ycl_round_peg
+                 RETURNING VALUE(result) TYPE abap_boolean.
 
   PRIVATE SECTION.
     DATA radius TYPE int1.
@@ -28,11 +27,11 @@ CLASS ycl_round_hole IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD get_radius.
-    radius = me->radius.
+    result = me->radius.
   ENDMETHOD.
 
   METHOD fits.
-    is_fitting = xsdbool( me->get_radius( ) >= peg->get_radius( ) ).
+    result = xsdbool( me->get_radius( ) >= peg->get_radius( ) ).
   ENDMETHOD.
 
 ENDCLASS.
@@ -42,15 +41,14 @@ ENDCLASS.
 
 Comparison of peg and hole is no problem.
 
-```
+```ABAP
 CLASS ltcl_round_hole DEFINITION FINAL FOR TESTING
   DURATION SHORT
   RISK LEVEL HARMLESS.
 
   PRIVATE SECTION.
-    METHODS:
-      peg_fits_round_hole FOR TESTING,
-      test_hole_peg_comparisson FOR TESTING.
+    METHODS peg_fits_round_hole FOR TESTING.
+    METHODS test_hole_peg_comparisson FOR TESTING.
 
 ENDCLASS.
 
@@ -76,14 +74,14 @@ ENDCLASS.
 
 ## Class ycl_round_peg
 
-```
+```ABAP
 CLASS ycl_round_peg DEFINITION
   PUBLIC
   CREATE PUBLIC .
 
   PUBLIC SECTION.
     METHODS constructor IMPORTING radius TYPE int1.
-    METHODS get_radius  RETURNING VALUE(radius) TYPE int1.
+    METHODS get_radius  RETURNING VALUE(result) TYPE int1.
 
   PRIVATE SECTION.
     DATA radius TYPE int1.
@@ -97,7 +95,7 @@ CLASS ycl_round_peg IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD get_radius.
-    radius = me->radius.
+    result = me->radius.
   ENDMETHOD.
 
 ENDCLASS.
@@ -105,19 +103,19 @@ ENDCLASS.
 
 ### Test class ltcl_round_peg
 
-```
+```ABAP
 CLASS ltcl_round_peg DEFINITION FINAL FOR TESTING
   DURATION SHORT
   RISK LEVEL HARMLESS.
 
   PRIVATE SECTION.
-    METHODS:
-      test_create_object FOR TESTING.
+    METHODS should_create_object FOR TESTING.
+
 ENDCLASS.
 
 CLASS ltcl_round_peg IMPLEMENTATION.
 
-  METHOD test_create_object.
+  METHOD should_create_object.
     DATA(cut) = NEW ycl_round_peg( 5 ).
     cl_abap_unit_assert=>assert_equals( exp = 5
                                         act = cut->get_radius( ) ).
@@ -128,7 +126,7 @@ ENDCLASS.
 
 ## Class ycl_square_peg_adapter
 
-```
+```ABAP
 CLASS ycl_square_peg_adapter DEFINITION
   PUBLIC
   CREATE PUBLIC INHERITING FROM ycl_round_peg.
@@ -149,7 +147,7 @@ ENDCLASS.
 CLASS ycl_square_peg_adapter IMPLEMENTATION.
 
   METHOD constructor.
-    super->constructor( get_radius( ) ). " Get initial radius
+    super->constructor( get_radius( ) ).
     me->peg = peg.
   ENDMETHOD.
 
@@ -157,8 +155,11 @@ CLASS ycl_square_peg_adapter IMPLEMENTATION.
     " The adapter pretends that it's a round peg with a
     " radius that could fit the square peg that the adapter
     " actually wraps.
-    CHECK peg IS BOUND.
-    radius = sqrt( 2 ) * peg->get_width( ) / 2.
+    IF peg IS NOT BOUND.
+      RETURN.
+    ENDIF.
+
+    result = sqrt( 2 ) * peg->get_width( ) / 2.
   ENDMETHOD.
 
 ENDCLASS.
@@ -166,7 +167,7 @@ ENDCLASS.
 
 ### Test class ltcl_square_peg_adapter
 
-```
+```ABAP
 CLASS ltcl_square_peg_adapter DEFINITION FINAL FOR TESTING
   DURATION SHORT
   RISK LEVEL HARMLESS.
@@ -210,15 +211,14 @@ ENDCLASS.
 
 ## Class ycl_square_peg
 
-```
+```ABAP
 CLASS ycl_square_peg DEFINITION
   PUBLIC
   CREATE PUBLIC .
 
   PUBLIC SECTION.
     METHODS constructor IMPORTING width TYPE int1.
-
-    METHODS get_width   RETURNING VALUE(width) TYPE int1.
+    METHODS get_width   RETURNING VALUE(result) TYPE int1.
 
   PRIVATE SECTION.
     DATA width TYPE int1.
@@ -232,7 +232,7 @@ CLASS ycl_square_peg IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD get_width.
-    width = me->width.
+    result = me->width.
   ENDMETHOD.
 
 ENDCLASS.
@@ -240,43 +240,21 @@ ENDCLASS.
 
 ### Test class ltcl_square_peg (Integration testing, client's call)
 
-```
-CLASS ltcl_square_peg_adapter DEFINITION FINAL FOR TESTING
+```ABAP
+CLASS ltcl_square_peg DEFINITION FINAL FOR TESTING
   DURATION SHORT
   RISK LEVEL HARMLESS.
 
   PRIVATE SECTION.
-    METHODS:
-      " Integration testing
-      test_get_radius             FOR TESTING,
-      " Test comparisson of peg/peg and peg/square
-      test_peg_square_comparisson FOR TESTING.
+    METHODS should_create_instance FOR TESTING.
 ENDCLASS.
 
+CLASS ltcl_square_peg IMPLEMENTATION.
 
-CLASS ltcl_square_peg_adapter IMPLEMENTATION.
+  METHOD should_create_instance.
+    DATA(cut) = NEW ycl_square_peg( 10 ).
 
-  METHOD test_get_radius.
-    DATA(cut) = NEW ycl_square_peg_adapter( NEW ycl_square_peg( 10 ) ).
-
-    cl_abap_unit_assert=>assert_equals( exp = 7
-                                        act = cut->get_radius( ) ).
-  ENDMETHOD.
-
-  METHOD test_peg_square_comparisson.
-    DATA small_sqpeg_adapter TYPE REF TO ycl_round_peg.
-    DATA large_sqpeg_adapter TYPE REF TO ycl_round_peg.
-
-    DATA(hole) = NEW ycl_round_hole( 5 ).
-
-    small_sqpeg_adapter ?= NEW ycl_square_peg_adapter( NEW ycl_square_peg( 5 ) ).  " Cast as Peg
-    large_sqpeg_adapter ?= NEW ycl_square_peg_adapter( NEW ycl_square_peg( 10 ) ). " Cast as Peg
-
-    cl_abap_unit_assert=>assert_equals( exp = abap_true
-                                        act = hole->fits( small_sqpeg_adapter ) ).
-
-    cl_abap_unit_assert=>assert_equals( exp = abap_false
-                                        act = hole->fits( large_sqpeg_adapter ) ).
+    cl_abap_unit_assert=>assert_equals( exp = 10 act = cut->get_width( ) ).
   ENDMETHOD.
 
 ENDCLASS.
