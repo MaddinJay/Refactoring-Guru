@@ -1,6 +1,6 @@
 Example illustrated in [https://refactoring.guru/design-patterns/factory-method](https://refactoring.guru/design-patterns/adapter)
 
-![Adapter - Round Peg Example](https://github.com/MaddinJay/Refactoring-Guru/blob/main/Adapter/Conceptual/Adapter_Conceptual_Example.PNG)
+![Adapter - Round Peg Example](Adapter_Conceptual_Example.PNG)
 
 ## Class ycl_round_hole
 
