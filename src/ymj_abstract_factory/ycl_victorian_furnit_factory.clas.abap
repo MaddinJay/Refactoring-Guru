@@ -7,8 +7,6 @@ CLASS ycl_victorian_furnit_factory DEFINITION
 
 ENDCLASS.
 
-
-
 CLASS ycl_victorian_furnit_factory IMPLEMENTATION.
 
   METHOD yif_furniture_factory~create_chair.
