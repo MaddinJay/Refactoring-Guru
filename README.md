@@ -8,6 +8,7 @@ List of design patterns:
 ## Creational patterns
 - [Factory method](https://github.com/MaddinJay/Refactoring-Guru/tree/main/Factory_Method)
 - [Singleton](https://github.com/MaddinJay/Refactoring-Guru/tree/main/Singleton)
+- [Abstract factory]()
 
 ## Structural patterns
 - [Adapter](https://github.com/MaddinJay/Refactoring-Guru/tree/main/Adapter)
