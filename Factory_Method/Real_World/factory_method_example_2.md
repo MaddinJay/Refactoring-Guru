@@ -1,8 +1,8 @@
 # Create DB update object instances dynamically
 
-Given a situation that we have to create several instances of a domain class with different injected DB operator classes to adapt the main flow to the specific DB table.
+Given a situation where we need to create several instances of a domain class with different injected database operator classes to adapt the main flow to specific database tables:
 
-We have a list of DB tables (table_list). For each one we create an instance of our domain class zcl_vcd_scramble_book_process. 
+We have a list of database tables (table_list). For each table, we create an instance of our domain class zcl_vcd_scramble_book_process.
 ```abap
     LOOP AT table_list INTO DATA(table).
       TRY.
@@ -17,7 +17,7 @@ We have a list of DB tables (table_list). For each one we create an instance of 
     ENDLOOP.
 ```
 
-In the domain class with IMPORTING parameter structure name we can create different instances of different DB operator classes, to adapt the algorithm to a specific DB table
+In the domain class, using the IMPORTING parameter structure name, we can create different instances of various database operator classes to adapt the algorithm to a specific database table.
 
 ```abap
     CLASS-METHODS create IMPORTING hash_algo_values TYPE zcl_vcd_scramble_bookings=>ts_hash_algo_values
